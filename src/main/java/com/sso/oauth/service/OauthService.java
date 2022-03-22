@@ -1,6 +1,6 @@
 package com.sso.oauth.service;
 
-import com.sso.oauth.pojo.SsoUser;
+import com.sso.oauth.domain.SsoUser;
 
 /**
  * @Author: golf

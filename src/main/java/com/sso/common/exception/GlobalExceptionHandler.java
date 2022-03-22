@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(BizException.class)
     public ResponseData<Object> runtimeExceptionHandler(BizException ex) {
-        // TODO 后续根据日志级别打印日志
+        log.error("发生接口调用异常 原因是:", ex);
         String msg = null != (ex.getMessage()) ? ex.getMessage() : ResponseCodeEnum.getMsgByCode(ex.getCode());
         return new ResponseData<>(ex.getCode(), msg);
     }

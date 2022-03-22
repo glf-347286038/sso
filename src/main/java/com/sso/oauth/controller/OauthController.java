@@ -1,9 +1,11 @@
 package com.sso.oauth.controller;
 
 import com.sso.common.ResponseData;
-import com.sso.oauth.pojo.SsoUser;
+import com.sso.oauth.domain.OauthDTO;
+import com.sso.oauth.domain.SsoUser;
 import com.sso.oauth.service.OauthService;
 import lombok.SneakyThrows;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -22,19 +24,15 @@ public class OauthController {
     /**
      * 获取验证码接口
      *
-     * @param userName 用户名
-     * @param password 密码
-     * @param appId    三方appId
+     * @param oauthDTO 参数
      * @return 验证码
      */
     @SneakyThrows
     @PostMapping("/authorize")
-    public ResponseData<String> authorize(@RequestParam String userName,
-                                          @RequestParam String password,
-                                          @RequestParam String appId) {
+    public ResponseData<String> authorize(@Validated @RequestBody OauthDTO oauthDTO) {
         // 基本参数校验appId是否合法
         // 校验用户名密码
-        return ResponseData.success(oauthService.authorize(userName, password, appId));
+        return ResponseData.success(oauthService.authorize(oauthDTO.getUserName(), oauthDTO.getPassword(), oauthDTO.getAppId()));
     }
 
     /**

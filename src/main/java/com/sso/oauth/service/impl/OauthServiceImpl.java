@@ -2,7 +2,7 @@ package com.sso.oauth.service.impl;
 
 import com.sso.common.exception.BizException;
 import com.sso.common.exception.ResponseCodeEnum;
-import com.sso.oauth.pojo.SsoUser;
+import com.sso.oauth.domain.SsoUser;
 import com.sso.oauth.service.OauthService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -41,12 +41,12 @@ public class OauthServiceImpl implements OauthService {
         user.setAppId(appId);
         user.setUserName("glf");
         user.setPassword("123456");
-        user.setUrl("http://localhost:5000/index");
+        user.setUrl("http://127.0.0.1:5000/callback");
         SsoUser user2 = new SsoUser();
         user2.setAppId(appId);
         user2.setUserName("dfb");
         user2.setPassword("123456");
-        user.setUrl("http://localhost:5000/index");
+        user2.setUrl("http://127.0.0.1:5000/callback");
         ssoUserList.add(user);
         ssoUserList.add(user2);
         appIdAppSecretMap.put(appId, "delta-test123456");
@@ -60,9 +60,9 @@ public class OauthServiceImpl implements OauthService {
             throw new BizException(ResponseCodeEnum.USER_NAME_OR_PASSWORD_ERROR);
         }
         String token = UUID.randomUUID().toString();
-        String code = token.substring(0, 5);
+        String code = token.substring(0, 6);
         addCodeAndTokenMap(appId, code, token, ssoUser);
-        return String.format(FORMAT, ssoUser.getUrl(), "?", code);
+        return String.format(FORMAT, ssoUser.getUrl(), "?code=", code);
     }
 
     @Override
