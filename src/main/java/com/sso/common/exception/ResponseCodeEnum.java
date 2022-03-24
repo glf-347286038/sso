@@ -9,10 +9,11 @@ import lombok.Getter;
 @Getter
 public enum ResponseCodeEnum {
     SUCCESS(200, "success"),
+    PARAM_INVALID(1000, "参数非法"),
 
-    USER_NAME_OR_PASSWORD_ERROR(1000, "用户名或密码错误"),
-    APP_ID_OR_SECRET_ERROR(1001, "appId或appSecret错误"),
-    CODE_ID_INVALID(1002, "验证码已失效,请重新获取"),
+    USER_NAME_OR_PASSWORD_ERROR(2000, "用户名或密码错误"),
+    APP_ID_OR_SECRET_ERROR(2001, "appId或appSecret错误"),
+    CODE_ID_INVALID(2002, "验证码已失效,请重新获取"),
 
     ;
 

@@ -22,7 +22,7 @@ public class WebConfigure implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns("*")
+                .allowedOrigins("*")
                 .allowedMethods("GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "TRACE")
                 // registry.allowCredentials(true)设置是否允许客户端发送cookie信息。默认是false
                 .allowCredentials(true);
