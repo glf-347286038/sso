@@ -1,4 +1,4 @@
-package com.sso.oauth.domain;
+package com.sso.module.oauth.domain;
 
 import lombok.Data;
 
