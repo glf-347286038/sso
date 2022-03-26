@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sso.module.app.model.AppDetail;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface AppDetailMapper extends BaseMapper<AppDetail> {
 
-    AppDetail selectByPrimaryKey(Integer id);
+    List<AppDetail> list();
 }
