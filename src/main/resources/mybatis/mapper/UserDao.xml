@@ -6,5 +6,14 @@
     id, user_name, `password`, email, `status`, create_time, create_by, update_time,
     update_by
   </sql>
+    <select id="listUser" resultType="com.sso.module.user.model.vo.UserResponseVO">
+        SELECT id,user_name,email,status,create_time
+        FROM `user`
+        <where>
+            <if test="queryUserVO.userName != null and queryUserVO.userName != ''">
+                user_name LIKE concat('%',#{queryUserVO.userName},'%')
+            </if>
+        </where>
+    </select>
 
 </mapper>
