@@ -33,8 +33,15 @@ public class AppDetail implements Serializable {
      * app_id
      */
     @NotEmpty(message = "appId不允许为空")
-    @Length(max = 20, message = "appId长度超过20")
+    @Length(max = 36, message = "appId长度超过20")
     private String appId;
+
+    /**
+     * app_name
+     */
+    @NotEmpty(message = "app名称不能为空")
+    @Length(max = 32, message = "app名称长度超过32")
+    private String appName;
 
     /**
      * app密码md5

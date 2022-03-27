@@ -42,6 +42,7 @@ public class AppDetailServiceImpl implements AppDetailService {
         AppDetail appDetailDO = AppDetail.builder()
                 .id(id)
                 .appId(updateAppVO.getAppId())
+                .appName(updateAppVO.getAppName())
                 .appSecret(Md5Util.getMd5("1997", updateAppVO.getAppSecret()))
                 .webServerRedirectUri(updateAppVO.getWebServerRedirectUri())
                 .accessTokenValidTime(updateAppVO.getAccessTokenValidTime())

@@ -27,20 +27,20 @@ public class AppDetailController {
     @PostMapping("/add")
     public ResponseData<String> add(@Validated @RequestBody AppDetail appDetail) {
         appDetailService.addAppDetail(appDetail);
-        return ResponseData.success("新增成功");
+        return ResponseData.success("新增app成功");
     }
 
     @DeleteMapping("/{id}")
     public ResponseData<String> delete(@PathVariable(name = "id") Integer id) {
         appDetailService.deleteAppDetail(id);
-        return ResponseData.success("删除成功");
+        return ResponseData.success("删除app成功");
     }
 
     @PutMapping("/{id}")
     public ResponseData<String> update(@PathVariable("id") Integer id,
                                        @Validated @RequestBody AppDetailRequestVO.UpdateAppVO updateAppVO) {
         appDetailService.updateAppDetail(id, updateAppVO);
-        return ResponseData.success("修改成功");
+        return ResponseData.success("修改app成功");
     }
 
     @GetMapping("/{id}")
