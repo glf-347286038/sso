@@ -1,4 +1,4 @@
-package com.sso.module.user.model;
+package com.sso.module.rel.user.app.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

@@ -3,9 +3,8 @@ package com.sso.module.user.service.impl;
 import com.sso.common.exception.BizException;
 import com.sso.common.exception.ResponseCodeEnum;
 import com.sso.common.util.Md5Util;
-import com.sso.module.user.mapper.RelUserAppDetailMapper;
+import com.sso.module.rel.user.app.service.RelUserAppDetailService;
 import com.sso.module.user.mapper.UserMapper;
-import com.sso.module.user.model.RelUserAppDetail;
 import com.sso.module.user.model.User;
 import com.sso.module.user.model.vo.UserRequestVO;
 import com.sso.module.user.model.vo.UserResponseVO;
@@ -13,7 +12,6 @@ import com.sso.module.user.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
@@ -26,11 +24,11 @@ import java.util.List;
 @Log4j2
 public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
-    private final RelUserAppDetailMapper relUserAppDetailMapper;
+    private final RelUserAppDetailService relUserAppDetailService;
 
-    public UserServiceImpl(UserMapper userMapper, RelUserAppDetailMapper relUserAppDetailMapper) {
+    public UserServiceImpl(UserMapper userMapper, RelUserAppDetailService relUserAppDetailService) {
         this.userMapper = userMapper;
-        this.relUserAppDetailMapper = relUserAppDetailMapper;
+        this.relUserAppDetailService = relUserAppDetailService;
     }
 
     @Override
@@ -83,6 +81,7 @@ public class UserServiceImpl implements UserService {
                 .userName(userVO.getUserName())
                 .email(userVO.getEmail())
                 .createTime(userVO.getCreateTime())
+                .appDetails(relUserAppDetailService.listAppDetailByUserId(id))
                 .build();
     }
 
@@ -94,21 +93,11 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void addUserAppAuth(UserRequestVO.AddUserAppAuthVO userAppAuthVO) {
-        if (CollectionUtils.isEmpty(userAppAuthVO.getAppDetailIds())) {
-            throw new BizException(ResponseCodeEnum.PARAM_INVALID.getCode(), "appId为空");
-        }
-        // 可以改为批量插入
-        for (Integer appDetailId : userAppAuthVO.getAppDetailIds()) {
-            relUserAppDetailMapper.insert(RelUserAppDetail.builder()
-                    .userId(userAppAuthVO.getUserId())
-                    .appDetailId(appDetailId)
-                    .build());
-        }
+        relUserAppDetailService.addUserAppAuth(userAppAuthVO);
     }
 
     @Override
     public void deleteUserAppAuth(List<Integer> relUserAppDetailIds) {
-        // 可以改为批量插入
-        relUserAppDetailMapper.deleteBatchIds(relUserAppDetailIds);
+        relUserAppDetailService.deleteUserAppAuth(relUserAppDetailIds);
     }
 }

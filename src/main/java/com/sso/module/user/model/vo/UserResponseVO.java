@@ -1,9 +1,11 @@
 package com.sso.module.user.model.vo;
 
+import com.sso.module.app.model.AppDetail;
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author: golf
@@ -16,4 +18,8 @@ public class UserResponseVO {
     private String userName;
     private String email;
     private Date createTime;
+    /**
+     * 有权限的app信息列表
+     */
+    List<AppDetail> appDetails;
 }
