@@ -3,7 +3,6 @@ package com.sso.common;
 import com.sso.common.exception.ResponseCodeEnum;
 import lombok.Data;
 
-import java.beans.Transient;
 import java.io.Serializable;
 
 /**

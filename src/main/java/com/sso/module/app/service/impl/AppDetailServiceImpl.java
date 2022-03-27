@@ -10,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Author: golf
@@ -57,11 +58,21 @@ public class AppDetailServiceImpl implements AppDetailService {
         if (appDetail != null) {
             appDetail.setAppSecret(null);
         }
-        return appDetailMapper.selectById(id);
+        return appDetail;
     }
 
     @Override
     public List<AppDetail> listAppDetail() {
         return appDetailMapper.list();
+    }
+
+    @Override
+    public AppDetail getAppInfoByAppId(String appId) {
+        return appDetailMapper.getAppDetail(appId);
+    }
+
+    @Override
+    public Boolean assertAppSecretEquals(String expected, String actual) {
+        return Objects.equals(expected, Md5Util.getMd5("1997", actual));
     }
 }

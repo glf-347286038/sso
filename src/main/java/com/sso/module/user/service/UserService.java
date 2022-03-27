@@ -1,5 +1,6 @@
 package com.sso.module.user.service;
 
+import com.sso.module.oauth.model.SsoUser;
 import com.sso.module.user.model.vo.UserRequestVO;
 import com.sso.module.user.model.vo.UserResponseVO;
 
@@ -61,4 +62,22 @@ public interface UserService {
      * @param appDetailIds appDetailId列表
      */
     void deleteUserAppAuth(Integer userId, List<Integer> appDetailIds);
+
+    /**
+     * 根据appId  + 用户名/邮箱 查询出用户信息
+     *
+     * @param appId           appId
+     * @param userNameOrEmail 用户名/邮箱
+     * @return 用户信息
+     */
+    SsoUser getSsoUserByUserNameOrEmail(String appId, String userNameOrEmail);
+
+    /**
+     * 判断密码是否正确
+     *
+     * @param expected 期望值
+     * @param actual   实际值
+     * @return 是否相同
+     */
+    Boolean assertPasswordEquals(String expected, String actual);
 }

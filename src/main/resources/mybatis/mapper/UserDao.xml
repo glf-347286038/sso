@@ -16,4 +16,29 @@
         </where>
     </select>
 
+    <select id="getUserByCondition" resultType="com.sso.module.oauth.model.SsoUser">
+        SELECT
+        us.id AS userId,
+        us.user_name,
+        us.email,
+        us.password,
+        us.status,
+        ad.access_token_valid_time,
+        ad.web_server_redirect_uri AS callBackUrl
+        FROM `user` us
+        INNER JOIN rel_user_app_detail ruad on ruad.user_id = us.id
+        LEFT JOIN app_detail ad ON ad.id = ruad.app_detail_id
+        <where>
+            <if test="queryUserVO.appId != null and queryUserVO.appId != ''">
+                AND ad.app_id = #{queryUserVO.appId}
+            </if>
+            <if test="queryUserVO.userName != null and queryUserVO.userName != ''">
+                AND us.user_name = #{queryUserVO.userName}
+            </if>
+            <if test="queryUserVO.email != null and queryUserVO.email != ''">
+                AND us.email = #{queryUserVO.email}
+            </if>
+        </where>
+    </select>
+
 </mapper>

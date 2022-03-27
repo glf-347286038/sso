@@ -21,7 +21,9 @@ public class UserRequestVO {
 
     @Data
     public static class QueryUserVO {
+        private String appId;
         private String userName;
+        private String email;
     }
 
     @Data

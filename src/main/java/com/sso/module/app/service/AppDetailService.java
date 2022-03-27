@@ -46,4 +46,21 @@ public interface AppDetailService {
      * @return app列表
      */
     List<AppDetail> listAppDetail();
+
+    /**
+     * 根据appId查询appDetail信息
+     *
+     * @param appId appId
+     * @return appDetail信息
+     */
+    AppDetail getAppInfoByAppId(String appId);
+
+    /**
+     * 断言用户传入的appSecret与期望值是否一致
+     *
+     * @param expected 期望值
+     * @param actual   实际值
+     * @return 是否一致
+     */
+    Boolean assertAppSecretEquals(String expected, String actual);
 }
