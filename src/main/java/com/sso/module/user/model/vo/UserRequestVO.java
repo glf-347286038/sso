@@ -17,7 +17,7 @@ public class UserRequestVO {
     private final QueryUserVO queryUserVO;
     private final AddUserVO addUserVO;
     private final UpdateUserVO updateUserVO;
-    private final AddUserAppAuthVO addUserAppAuthVO;
+    private final UserAppAuthVO userAppAuthVO;
 
     @Data
     public static class QueryUserVO {
@@ -42,7 +42,7 @@ public class UserRequestVO {
     }
 
     @Data
-    public static class AddUserAppAuthVO {
+    public static class UserAppAuthVO {
         /**
          * 用户id
          */

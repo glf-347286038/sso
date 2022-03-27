@@ -52,12 +52,13 @@ public interface UserService {
      *
      * @param userAppAuthVO 用户和app信息
      */
-    void addUserAppAuth(UserRequestVO.AddUserAppAuthVO userAppAuthVO);
+    void addUserAppAuth(UserRequestVO.UserAppAuthVO userAppAuthVO);
 
     /**
      * 删除用户的app权限
      *
-     * @param relUserAppDetailIds 用户和app关联的主键id
+     * @param userId       用户id
+     * @param appDetailIds appDetailId列表
      */
-    void deleteUserAppAuth(List<Integer> relUserAppDetailIds);
+    void deleteUserAppAuth(Integer userId, List<Integer> appDetailIds);
 }

@@ -10,6 +10,7 @@ import com.sso.module.rel.user.app.service.RelUserAppDetailService;
 import com.sso.module.user.mapper.RelUserAppDetailMapper;
 import com.sso.module.user.model.vo.UserRequestVO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
@@ -32,8 +33,8 @@ public class RelUserAppDetailImpl implements RelUserAppDetailService {
     }
 
     @Override
-    @Transactional
-    public void addUserAppAuth(UserRequestVO.AddUserAppAuthVO userAppAuthVO) {
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void addUserAppAuth(UserRequestVO.UserAppAuthVO userAppAuthVO) {
         if (CollectionUtils.isEmpty(userAppAuthVO.getAppDetailIds())) {
             throw new BizException(ResponseCodeEnum.PARAM_INVALID.getCode(), "appId为空");
         }
@@ -47,9 +48,11 @@ public class RelUserAppDetailImpl implements RelUserAppDetailService {
     }
 
     @Override
-    public void deleteUserAppAuth(List<Integer> relUserAppDetailIds) {
-        // 可以改为批量插入
-        relUserAppDetailMapper.deleteBatchIds(relUserAppDetailIds);
+    public void deleteUserAppAuth(Integer userId, List<Integer> appDetailIds) {
+        QueryWrapper<RelUserAppDetail> relUserAppDetailQueryWrapper = new QueryWrapper<>();
+        relUserAppDetailQueryWrapper.eq("user_id", userId);
+        relUserAppDetailQueryWrapper.in("app_detail_id", appDetailIds);
+        relUserAppDetailMapper.delete(relUserAppDetailQueryWrapper);
     }
 
     @Override

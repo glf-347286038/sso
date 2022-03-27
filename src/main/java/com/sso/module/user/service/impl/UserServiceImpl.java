@@ -12,6 +12,7 @@ import com.sso.module.user.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
@@ -92,12 +93,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void addUserAppAuth(UserRequestVO.AddUserAppAuthVO userAppAuthVO) {
+    public void addUserAppAuth(UserRequestVO.UserAppAuthVO userAppAuthVO) {
         relUserAppDetailService.addUserAppAuth(userAppAuthVO);
     }
 
     @Override
-    public void deleteUserAppAuth(List<Integer> relUserAppDetailIds) {
-        relUserAppDetailService.deleteUserAppAuth(relUserAppDetailIds);
+    public void deleteUserAppAuth(Integer userId, List<Integer> appDetailIds) {
+        if (CollectionUtils.isEmpty(appDetailIds)) {
+            throw new BizException(ResponseCodeEnum.PARAM_INVALID.getCode(), "请选择要删除的app");
+        }
+        relUserAppDetailService.deleteUserAppAuth(userId, appDetailIds);
     }
 }
