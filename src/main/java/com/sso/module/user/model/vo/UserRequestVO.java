@@ -3,6 +3,10 @@ package com.sso.module.user.model.vo;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.util.List;
+
 /**
  * @Author: golf
  * @Date: 2022/3/27 2:03
@@ -13,6 +17,7 @@ public class UserRequestVO {
     private final QueryUserVO queryUserVO;
     private final AddUserVO addUserVO;
     private final UpdateUserVO updateUserVO;
+    private final AddUserAppAuthVO addUserAppAuthVO;
 
     @Data
     public static class QueryUserVO {
@@ -34,5 +39,19 @@ public class UserRequestVO {
         private String userName;
         private String password;
         private String email;
+    }
+
+    @Data
+    public static class AddUserAppAuthVO {
+        /**
+         * 用户id
+         */
+        @Min(value = 1, message = "用户id不合法")
+        private Integer userId;
+        /**
+         * appDetailId
+         */
+        @NotNull(message = "appId不能为空")
+        private List<Integer> appDetailIds;
     }
 }

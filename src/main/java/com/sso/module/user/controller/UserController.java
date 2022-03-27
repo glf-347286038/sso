@@ -52,4 +52,16 @@ public class UserController {
         queryUserVO.setUserName(userName);
         return ResponseData.success(userService.listUser(queryUserVO));
     }
+
+    @PostMapping("/addUserAppAuth")
+    public ResponseData<String> addUserAppAuth(@Validated @RequestBody UserRequestVO.AddUserAppAuthVO userAppAuthVO) {
+        userService.addUserAppAuth(userAppAuthVO);
+        return ResponseData.success("添加用户app权限成功");
+    }
+
+    @PostMapping("/deleteUserAppAuth/{relUserAppDetailIds}")
+    public ResponseData<String> deleteUserAppAuth(@PathVariable("relUserAppDetailIds") List<Integer> relUserAppDetailIds) {
+        userService.deleteUserAppAuth(relUserAppDetailIds);
+        return ResponseData.success("添加用户app权限成功");
+    }
 }

@@ -2,6 +2,7 @@ package com.sso.module.user.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.io.Serializable;
  * @author golf
  */
 @Data
+@Builder
 public class RelUserAppDetail implements Serializable {
     private static final long serialVersionUID = 2394731807624055420L;
     /**

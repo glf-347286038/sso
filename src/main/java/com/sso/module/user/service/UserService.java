@@ -46,4 +46,18 @@ public interface UserService {
      * @return 用户信息列表
      */
     List<UserResponseVO> listUser(UserRequestVO.QueryUserVO queryUserVO);
+
+    /**
+     * 添加用户的app权限
+     *
+     * @param userAppAuthVO 用户和app信息
+     */
+    void addUserAppAuth(UserRequestVO.AddUserAppAuthVO userAppAuthVO);
+
+    /**
+     * 删除用户的app权限
+     *
+     * @param relUserAppDetailIds 用户和app关联的主键id
+     */
+    void deleteUserAppAuth(List<Integer> relUserAppDetailIds);
 }
