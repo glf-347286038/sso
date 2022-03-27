@@ -18,4 +18,10 @@
       FROM
         app_detail
   </select>
+    <select id="getAppDetail" resultType="com.sso.module.app.model.AppDetail">
+        select
+        <include refid="base"/>
+        FROM app_detail
+        WHERE app_id = #{appId}
+    </select>
 </mapper>

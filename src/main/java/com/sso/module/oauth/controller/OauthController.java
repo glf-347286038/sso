@@ -1,10 +1,9 @@
 package com.sso.module.oauth.controller;
 
 import com.sso.common.ResponseData;
-import com.sso.module.oauth.domain.OauthDTO;
-import com.sso.module.oauth.domain.SsoUser;
+import com.sso.module.oauth.model.SsoUser;
+import com.sso.module.oauth.model.vo.OauthRequestVO;
 import com.sso.module.oauth.service.OauthService;
-import lombok.SneakyThrows;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,33 +23,26 @@ public class OauthController {
     /**
      * 获取验证码接口
      *
-     * @param oauthDTO 参数
+     * @param authorizeVO 用户名、密码、appId
      * @return 验证码
      */
-    @SneakyThrows
     @PostMapping("/authorize")
-    public ResponseData<String> authorize(@Validated @RequestBody OauthDTO oauthDTO) {
-        // 基本参数校验appId是否合法
-        // 校验用户名密码
-        return ResponseData.success(oauthService.authorize(oauthDTO.getUserName(), oauthDTO.getPassword(), oauthDTO.getAppId()));
+    public ResponseData<String> authorize(@Validated @RequestBody OauthRequestVO.AuthorizeVO authorizeVO) {
+        return ResponseData.success(oauthService.authorize(authorizeVO));
     }
 
     /**
      * 根据验证码获取授权吗
      *
-     * @param appId     appId
-     * @param appSecret appSecret
-     * @param code      验证码
+     * @param accessTokenVO appId、appSecret、验证码
      * @return 授权码
      */
-    @GetMapping("/access_token")
-    public ResponseData<String> accessToken(@RequestParam String appId,
-                                            @RequestParam String appSecret,
-                                            @RequestParam String code) {
-        return ResponseData.success(oauthService.accessToken(appId, appSecret, code));
+    @PostMapping("/access/token")
+    public ResponseData<String> accessToken(@Validated @RequestBody OauthRequestVO.AccessTokenVO accessTokenVO) {
+        return ResponseData.success(oauthService.accessToken(accessTokenVO));
     }
 
-    @PostMapping("getSsoUserInfo")
+    @GetMapping("getSsoUserInfo")
     public ResponseData<SsoUser> getSsoUserInfo(@RequestParam String token) {
         return ResponseData.success(oauthService.getSsoUserInfo(token));
     }

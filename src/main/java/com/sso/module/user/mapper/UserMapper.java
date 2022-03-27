@@ -1,6 +1,7 @@
 package com.sso.module.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.sso.module.oauth.model.SsoUser;
 import com.sso.module.user.model.User;
 import com.sso.module.user.model.vo.UserRequestVO;
 import com.sso.module.user.model.vo.UserResponseVO;
@@ -17,4 +18,10 @@ public interface UserMapper extends BaseMapper<User> {
      * @return 用户列表
      */
     List<UserResponseVO> listUser(@Param("queryUserVO") UserRequestVO.QueryUserVO queryUserVO);
+
+    /**
+     * @param queryUserVO 查询参数
+     * @return 用户信息
+     */
+    SsoUser getUserByCondition(@Param("queryUserVO") UserRequestVO.QueryUserVO queryUserVO);
 }

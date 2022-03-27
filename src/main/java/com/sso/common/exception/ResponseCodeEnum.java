@@ -14,6 +14,7 @@ public enum ResponseCodeEnum {
     USER_NAME_OR_PASSWORD_ERROR(2000, "用户名或密码错误"),
     APP_ID_OR_SECRET_ERROR(2001, "appId或appSecret错误"),
     CODE_ID_INVALID(2002, "验证码已失效,请重新获取"),
+    USER_NOT_EXIST(2003, "用户不存在"),
 
     ;
 

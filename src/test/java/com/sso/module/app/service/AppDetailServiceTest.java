@@ -1,7 +1,7 @@
 package com.sso.module.app.service;
 
 import com.sso.module.app.model.AppDetail;
-import com.sso.module.oauth.domain.SsoUser;
+import com.sso.module.oauth.model.SsoUser;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Assert;
@@ -45,7 +45,7 @@ class AppDetailServiceTest {
         SsoUser ssoUser = new SsoUser();
         ssoUser.setAppId("222");
         ssoUser.setPassword("glf");
-        ssoUser.setUrl("123");
+        ssoUser.setCallBackUrl("123");
         redisTemplate.opsForValue().set("user", ssoUser);
         SsoUser user = (SsoUser) redisTemplate.opsForValue().get("user");
         Assert.assertTrue(Boolean.TRUE);
