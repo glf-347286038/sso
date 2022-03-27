@@ -1,8 +1,8 @@
 package com.sso.module.oauth.controller;
 
 import com.sso.common.ResponseData;
-import com.sso.module.oauth.domain.OauthDTO;
-import com.sso.module.oauth.domain.SsoUser;
+import com.sso.module.oauth.model.OauthDTO;
+import com.sso.module.oauth.model.SsoUser;
 import com.sso.module.oauth.service.OauthService;
 import lombok.SneakyThrows;
 import org.springframework.validation.annotation.Validated;

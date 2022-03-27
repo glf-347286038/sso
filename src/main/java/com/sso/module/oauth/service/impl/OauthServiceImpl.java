@@ -2,7 +2,7 @@ package com.sso.module.oauth.service.impl;
 
 import com.sso.common.exception.BizException;
 import com.sso.common.exception.ResponseCodeEnum;
-import com.sso.module.oauth.domain.SsoUser;
+import com.sso.module.oauth.model.SsoUser;
 import com.sso.module.oauth.service.OauthService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
