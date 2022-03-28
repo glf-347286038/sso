@@ -6,7 +6,7 @@ spring:
       config:
         server-addr: http://118.190.211.69:8848
         file-extension: yaml
-        namespace: dev
+        namespace: product
         group: v1.0
         username: product
         password: product491550
