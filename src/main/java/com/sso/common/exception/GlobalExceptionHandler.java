@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 
 /**
  * 使用该注解表示开启了全局异常的捕获
+ *
+ * @author golf
  */
 @Log4j2
 @ControllerAdvice

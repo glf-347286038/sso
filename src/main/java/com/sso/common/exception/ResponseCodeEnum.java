@@ -8,6 +8,9 @@ import lombok.Getter;
  */
 @Getter
 public enum ResponseCodeEnum {
+    /**
+     * 请求成功
+     */
     SUCCESS(200, "success"),
     PARAM_INVALID(1000, "参数非法"),
 

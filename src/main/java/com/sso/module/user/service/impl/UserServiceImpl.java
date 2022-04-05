@@ -29,6 +29,7 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService {
 
     private static final String USER_PASSWORD_SALT = "05-13";
+    private static final Integer PASSWORD_MIN_LENGTH = 6;
 
     private final UserMapper userMapper;
     private final RelUserAppDetailService relUserAppDetailService;
@@ -66,7 +67,7 @@ public class UserServiceImpl implements UserService {
         } else {
             userDO.setUserName(userName);
         }
-        if (!StringUtils.isEmpty(password) && password.length() < 6) {
+        if (!StringUtils.isEmpty(password) && password.length() < PASSWORD_MIN_LENGTH) {
             throw new BizException(ResponseCodeEnum.PARAM_INVALID.getCode(), "密码长度不得小于6");
         } else {
             userDO.setPassword(Md5Util.getMd5(USER_PASSWORD_SALT, password));
@@ -98,7 +99,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void addUserAppAuth(UserRequestVO.UserAppAuthVO userAppAuthVO) {
         relUserAppDetailService.addUserAppAuth(userAppAuthVO);
     }
