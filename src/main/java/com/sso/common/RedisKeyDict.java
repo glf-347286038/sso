@@ -8,8 +8,17 @@ import lombok.Getter;
  */
 @Getter
 public enum RedisKeyDict {
+    /**
+     * sso验证码前缀
+     */
     SSO_CODE("sso:code:", "sso验证码"),
+    /**
+     * sso授权码前缀
+     */
     SSO_TOKEN("sso:token:", "sso授权码"),
+    /**
+     * sso授权码对应的用户id
+     */
     SSO_TOKEN_USER_ID("sso:token:user:id", "sso用户对应的授权码"),
     ;
     private final String prefix;

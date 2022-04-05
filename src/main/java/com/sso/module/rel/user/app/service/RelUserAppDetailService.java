@@ -28,6 +28,7 @@ public interface RelUserAppDetailService {
     /**
      * 根据用户id查询出有权限的app信息
      *
+     * @param userId 用户表主键id
      * @return app列表
      */
     List<AppDetail> listAppDetailByUserId(Integer userId);

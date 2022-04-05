@@ -28,7 +28,8 @@ public interface UserService {
     /**
      * 修改用户信息
      *
-     * @param id 主键
+     * @param id           主键
+     * @param updateUserVO 要更新的信息
      */
     void updateById(Integer id, UserRequestVO.UpdateUserVO updateUserVO);
 

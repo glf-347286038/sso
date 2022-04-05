@@ -33,7 +33,7 @@ public class RelUserAppDetailImpl implements RelUserAppDetailService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
     public void addUserAppAuth(UserRequestVO.UserAppAuthVO userAppAuthVO) {
         if (CollectionUtils.isEmpty(userAppAuthVO.getAppDetailIds())) {
             throw new BizException(ResponseCodeEnum.PARAM_INVALID.getCode(), "appId为空");
