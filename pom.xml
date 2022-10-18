@@ -103,6 +103,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                    <!-- 默认值是${artifactId}-${version} -->
+                    <!-- 改为如下设置，即可去除jar包的版本号 -->
+                    <finalName>${project.artifactId}</finalName>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>

@@ -1,0 +1,14 @@
+version: "3"
+services:
+  # 服务名称,用户自定义
+  sso:
+    # 构建出镜像的名称
+    image: sso
+    # 指定容器名称
+    container_name: sso
+    # 重启策略
+    restart: always
+    # 表示以当前目录下的Dockerfile开始构建镜像
+    build: .
+    ports:
+      - "2000:2000"
