@@ -3,12 +3,13 @@ services:
   # 服务名称,用户自定义
   sso:
     # 构建出镜像的名称
-    image: sso
+    image: openjdk:8
     # 指定容器名称
     container_name: sso
     # 重启策略
     restart: always
-    # 表示以当前目录下的Dockerfile开始构建镜像
-    build: .
+    volumes:
+      - ./sso.jar:/sso.jar
     ports:
       - "2000:2000"
+    entrypoint: java -jar -Dspring.profiles.active=product sso.jar
